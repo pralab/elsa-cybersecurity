@@ -50,7 +50,7 @@ All the datasets and pre-computed features can be downloaded [here](https://benc
 ### Model implementation instructions
 In [this repository](https://github.com/pralab/android-detectors) you can find already implemented models which serve as baselines for the benchmarks hosted in the Cybersecurity Use Case.
 Please, follow these instructions when implementing your model:
-- The model class must necessarily expose a small set of methods. All the details can be found in the [BaseModel](https://github.com/pralab/android-detectors/src/base/base_model.py) class. We suggest to extend this class.
+- The model class must necessarily expose a small set of methods. All the details can be found in the [BaseModel](https://github.com/pralab/android-detectors/blob/main/src/models/base/base_model.py) class. We suggest to extend this class.
 - To ensure reproducibility and allow validating the results, make sure to set all random seeds, add all the requirements, and if necessary a Dockerfile from where to run the evaluation scripts.
 - Provide one or more scripts for model training and evaluation (including the submission file creation).
 

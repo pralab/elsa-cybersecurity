@@ -1,0 +1,3 @@
+[submodule "android-detectors"]
+	path = android-detectors
+	url = https://github.com/pralab/android-detectors

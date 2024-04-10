@@ -1,5 +1,5 @@
 # elsa-cybersecurity
-Official repository for the Cybersecurity use case of [ELSA](https://www.elsa-ai.eu/) EU Project.
+Official repository for the [Cybersecurity use case](https://benchmarks.elsa-ai.eu/?ch=6) of [ELSA](https://www.elsa-ai.eu/) EU Project.
 
 ## Overview
 
@@ -30,7 +30,7 @@ In this setting, we will collect the performance evaluation of the given AI-base
 3. The submitted models must have a False Positive Rate equal to or lower than 1% on the provided validation set composed of benign samples only. 
 4. The testing must be performed with the provided code, which will classify the test sets, execute a feature-space attack, and output the submission file with predicted labels and scores.
 
-Submission examples can be found [here](https://github.com/pralab/elsa-cybersecurity/track_1/README.md).
+Submission examples can be found [here](https://github.com/pralab/elsa-cybersecurity/blob/main/track_1/README.md).
 
 ### Track 2: Adversarial Robustness to Problem-space Attacks (starting soon)
 1. The submitted models must accept APK files as input and provide the classification scores of the positive class and the predicted class labels as output. 
@@ -41,14 +41,14 @@ Submission examples can be found [here](https://github.com/pralab/elsa-cybersecu
 1. The submitted models must accept APK files as input and provide the classification scores of the positive class and the predicted class labels as output. 
 2. To perform the testing, the participants must classify the test applications with their model and provide the predicted labels and the classification scores of the positive class.
 
-Submission examples can be found [here](https://github.com/pralab/elsa-cybersecurity/track_3/README.md).
+Submission examples can be found [here](https://github.com/pralab/elsa-cybersecurity/blob/main/track_3/README.md).
 
 ### Data
 All the datasets and pre-computed features can be downloaded [here](https://benchmarks.elsa-ai.eu/?ch=6&com=downloads) (registration is required).
 
 
 ### Model implementation instructions
-In [this repository](https://github.com/pralab/android-detectors) you can find already implemented models which serve as baselines for the [benchmarks](https://benchmarks.elsa-ai.eu/?ch=6) hosted in the Cybersecurity Use Case.
+In [this repository](https://github.com/pralab/android-detectors) you can find already implemented models which serve as baselines for the benchmarks hosted in the Cybersecurity Use Case.
 Please, follow these instructions when implementing your model:
 - The model class must necessarily expose a small set of methods. All the details can be found in the [BaseModel](https://github.com/pralab/android-detectors/src/base/base_model.py) class. We suggest to extend this class.
 - To ensure reproducibility and allow validating the results, make sure to set all random seeds, add all the requirements, and if necessary a Dockerfile from where to run the evaluation scripts.

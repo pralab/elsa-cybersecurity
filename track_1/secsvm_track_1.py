@@ -3,7 +3,7 @@ import os
 import models
 from models import SecSVM
 from models.utils import *
-from .evaluation import evaluate
+from evaluation import evaluate
 
 
 if __name__ == "__main__":

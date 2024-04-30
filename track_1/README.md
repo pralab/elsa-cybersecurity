@@ -2,12 +2,6 @@
 
 Download all the datasets and pre-computed features from the [ELSA benchmarks website](https://benchmarks.elsa-ai.eu/?ch=6&com=downloads) inside the `data` directory.
 
-Pre-trained models can also be downloaded from Drive:
-- [DREBIN](https://drive.google.com/drive/folders/118Eb_KoW6vE38aqDY0MmVfHUtLOwO8Vk?usp=sharing)
-- [SecSVM](https://drive.google.com/drive/folders/1pSO0UWvBJsrkIgshYkHwR3OqR_slZGBH?usp=sharing)
-
-The downloaded files must be placed in the `android-detectors/pretrained` folder.
-
 If you want to use Docker, you can use the following commands (from the repository root directory):
 ```bash
 docker build -t android android-detectors

@@ -3,7 +3,7 @@ from obfuscapk.obfuscation import Obfuscation
 from obfuscapk import util
 from memory_tempfile import MemoryTempfile
 from shutil import rmtree, copytree
-from apktool import Apktool_
+from .apktool import Apktool_
 from obfuscapk.toolbundledecompiler import BundleDecompiler
 
 

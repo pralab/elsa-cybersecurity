@@ -14,3 +14,4 @@ secml==0.15.6
 validators==0.22.0
 memory-tempfile
 pandas==2.2.0
+tqdm

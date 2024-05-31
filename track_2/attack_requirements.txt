@@ -12,6 +12,5 @@ deap==1.4.1
 Pillow==10.2.0
 secml==0.15.6
 validators==0.22.0
-shutil
 memory-tempfile
 pandas==2.2.0

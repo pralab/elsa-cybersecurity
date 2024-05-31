@@ -1,5 +1,5 @@
 from feature_extraction.base_feature_extractor import BaseFeatureExtractor
-from apk_analyzer import process_apk
+from .apk_analyzer import process_apk
 import logging
 import os
 import json

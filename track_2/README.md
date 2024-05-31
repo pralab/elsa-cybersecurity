@@ -12,6 +12,7 @@ docker run -itd --name android android
 docker cp data android:/
 docker cp track_2/. android:/android-detectors/
 docker exec -it android pip install -r /android-detectors/attack_requirements.txt
+docker exec -it android pip install -r /android-detectors/problem_space_attack/manipulation/Obfuscapk/src/requirements.txt
 docker exec -it android python /android-detectors/drebin_track_2.py
 docker stop android
 ```
@@ -28,6 +29,7 @@ conda create -n android python=3.9
 conda activate android
 pip install -r android-detectors/requirements.txt
 pip install -r track_2/attack_requirements.txt
+pip install -r track_2/problem_space_attack/manipulation/Obfuscapk/src/requirements.txt
 export PYTHONPATH="${PYTHONPATH}:android-detectors/src"
 python3 track_2/drebin_track_2.py
 ```

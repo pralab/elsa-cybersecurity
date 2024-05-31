@@ -3,7 +3,7 @@ from models.base import BaseModel
 from models.utils import *
 import os
 import logging
-from ..apk_dowload import APKDownloader
+from apk_downloader import APKDownloader
 import pandas as pd
 from zipfile import ZipFile, ZIP_DEFLATED
 

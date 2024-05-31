@@ -4,8 +4,8 @@ import logging
 from secml.parallel import parfor2
 import numpy as np
 from .manipulation import Manipulator
-from feature_extraction import FeatureExtractor
-from manipulation_space import ManipulationSpace
+from .feature_extraction import FeatureExtractor
+from .manipulation_space import ManipulationSpace
 import os
 import tempfile
 

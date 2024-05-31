@@ -12,7 +12,7 @@ The Cybersecurity use case aims to evaluate machine learning methods when they a
 
 We propose a threefold benchmark to provide tools for comparing AI-based Android malware detectors in a realistic setting. They challenge the research community to go beyond simplistic assumptions to ultimately design more robust AI models that can be maintained and updated more efficiently, saving human labor and effort. The competition is deployed in periodical evaluation rounds and is structured in three separate tracks:
 
-### Track 1 - Adversarial Robustness to Feature-space Attacks
+### Track 1: Adversarial Robustness to Feature-space Attacks
 In this scenario, we aim to measure how much the models' predictions change against increasing amounts of adversarial manipulations, assuming the attacker knows the features used and the model itself and has unrestricted access to it. A feature-space evasion attack will be performed on test applications, perturbing the feature vector with constraints to ensure that applying these manipulations to an APK preserves its malicious functionalities. The applied perturbation is bounded based on the number of modified features.
 
 ### Track 2: Adversarial Robustness to Problem-space Attacks
@@ -29,7 +29,7 @@ In this setting, we will collect the performance evaluation of the given AI-base
 3. Everything must be fully reproducible. The participants must provide all the required code to train and deploy their models, including the feature extraction process (except for Track 1, where the features will be provided to the participants) and, if necessary, the pre-set random seeds to guarantee more accurate reproducibility. All submitted models and results are subject to re-evaluations. We ask that pre-trained models and source code be publicly released (e.g., on a GitHub repository). 
 4. To participate in a track by submitting a new model, users must train the model and follow the track instructions to understand how to compute the predicted labels and scores on the released test datasets. The models must be evaluated on all the provided test sets.
 
-### Track 1 - Adversarial Robustness to Feature-space Attacks
+### Track 1: Adversarial Robustness to Feature-space Attacks
 1. The submitted models must only rely on the provided feature set or a custom subset thereof (in this case, the user must specify the selected features). 
 2. The submitted models must accept feature vectors as input and provide the classification score of the positive class and the predicted class labels as output. 
 3. The submitted models must have a False Positive Rate equal to or lower than 1% on the provided validation set composed of benign samples only. 
@@ -37,7 +37,7 @@ In this setting, we will collect the performance evaluation of the given AI-base
 
 Submission examples can be found [here](https://github.com/pralab/elsa-cybersecurity/blob/main/track_1/README.md).
 
-### Track 2: Adversarial Robustness to Problem-space Attacks (starting soon)
+### Track 2: Adversarial Robustness to Problem-space Attacks
 1. The submitted models must accept APK files as input and provide the classification scores of the positive class and the predicted class labels as output. 
 2. The submitted models must have a False Positive Rate equal to or lower than 1% on the provided validation set composed of benign samples only. 
 3. The testing must be performed with the provided code, which will classify the test sets, execute a problem-space attack, and output the submission file with predicted labels and scores.

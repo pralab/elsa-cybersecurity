@@ -1,6 +1,6 @@
-### Track 1 - Adversarial Robustness to Feature-space Attacks - Submission example
+### Track 1: Adversarial Robustness to Feature-space Attacks - Submission example
 
-Download all the datasets and pre-computed features from the [ELSA benchmarks website](https://benchmarks.elsa-ai.eu/?ch=6&com=downloads) inside the `data` directory.
+Download the training dataset, the Track 1 datasets and their pre-extracted features from the [ELSA benchmarks website](https://benchmarks.elsa-ai.eu/?ch=6&com=downloads) inside the `data` directory.
 
 If you want to use Docker, you can use the following commands (from the repository root directory):
 ```bash

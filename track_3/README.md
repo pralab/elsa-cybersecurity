@@ -1,6 +1,8 @@
 ### Track 3: Temporal Robustness to Data Drift - Submission example
 
-Download all the datasets and pre-computed features from the [ELSA benchmarks website](https://benchmarks.elsa-ai.eu/?ch=6&com=downloads) inside the `data` directory.
+Download the training dataset and the Track 3 datasets from the [ELSA benchmarks website](https://benchmarks.elsa-ai.eu/?ch=6&com=downloads) inside the `data` directory.
+You can also find there the pre-extracted DREBIN features. 
+If you don't want to use them, you can directly download the APK files from [AndroZoo](https://androzoo.uni.lu/) by querying for their SHA256 hashes (contained in the dataset CSV files).
 
 If you want to use Docker, you can use the following commands (from the repository root directory):
 ```bash

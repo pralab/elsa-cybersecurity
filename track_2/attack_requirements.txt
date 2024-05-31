@@ -1,0 +1,17 @@
+numpy==1.26.4
+scikit-learn==1.4.0
+PyYAML==6.0.1
+androguard @ git+https://github.com/androguard/androguard@v3.4.0a1
+psutil==5.9.8
+scipy==1.12.0
+networkx==3.2.1
+joblib==1.3.2
+lxml==5.1.0
+dill==0.3.8
+deap==1.4.1
+Pillow==10.2.0
+secml==0.15.6
+validators==0.22.0
+shutil
+memory-tempfile
+pandas==2.2.0

@@ -68,7 +68,8 @@ def evaluate(classifier, download_apks=False, androzoo_api_key=None, n_jobs=1):
 
     results.append({
         sha256: [int(y), float(s)] for sha256, y, s in zip(
-            [apk.split(".")[0] for apk in ts_fp_check], y_pred, scores)})
+            [os.path.basename(apk).split(".")[0] for apk in ts_fp_check],
+            y_pred, scores)})
 
     ts_adv = sorted([os.path.join(ts_adv_dir, apk) for apk in
                      os.listdir(ts_adv_dir)], key=os.path.getctime)
@@ -76,7 +77,8 @@ def evaluate(classifier, download_apks=False, androzoo_api_key=None, n_jobs=1):
 
     results.append({
         sha256: [int(y), float(s)] for sha256, y, s in zip(
-            [apk.split(".")[0] for apk in ts_adv], y_pred, scores)})
+            [os.path.basename(apk).split(".")[0] for apk in ts_adv],
+            y_pred, scores)})
 
     attack = ProblemSpaceAttack(classifier=classifier,
                                 manipulated_apks_dir=manipulated_apks_dir,
@@ -87,6 +89,7 @@ def evaluate(classifier, download_apks=False, androzoo_api_key=None, n_jobs=1):
 
     results.append({sha256: [int(adv_result[0]), float(adv_result[1])]
                     for sha256, adv_result in zip(
-            [apk.split(".")[0] for apk in ts_adv], adv_results)})
+            [os.path.basename(apk).split(".")[0] for apk in ts_adv],
+            adv_results)})
 
     return results

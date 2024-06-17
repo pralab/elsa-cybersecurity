@@ -6,7 +6,7 @@ from obfuscapk.tool import (
 from .obfuscators import *
 import uuid
 from secml.parallel import parfor2
-from ..manipulation_space import Manipulations
+from .manipulation_space import Manipulations
 
 
 # For the plugin system log only the error messages and ignore the log level
@@ -42,7 +42,7 @@ class Manipulator:
     def __init__(self, apk_path, manipulated_apks_dir,
                  logging_level=logging.INFO):
 
-        self.manipulated_apks_dir = manipulated_apks_dir
+        self._manipulated_apks_dir = manipulated_apks_dir
 
         # Logging configuration.
         self.logger = logging.getLogger(__name__)
@@ -219,3 +219,6 @@ class Manipulator:
         _recurse_apply_manipulations(manipulations)
 
         return error_free_manipulations
+
+    def manipulated_apks_dir(self, file):
+        return os.path.join(self._manipulated_apks_dir, file)

@@ -110,15 +110,16 @@ class ProblemSpaceAttack:
         """Runs the attack on a single sample.
         """
         label, score = self.clf.classify([malware_sample])
+        label, score = label.item(), score.item()
         if label == 0:
             self.logger.debug("Skipping sample, it is not detected as malware")
-            return label.item(), score.item(), malware_sample
-        self.logger.debug(f"Initial confidence: {score.item()}")
+            return label, score, malware_sample
+        self.logger.debug(f"Initial confidence: {score}")
 
         adv_apk_path = malware_sample
         manipulator = None
         pop = None
-        best_fitness = score.item()
+        best_fitness = score
 
         try:
             manipulator = Manipulator(malware_sample,
@@ -192,7 +193,7 @@ class ProblemSpaceAttack:
                     self.logger.debug(
                         f"Generation {g + 1} - score {best_fitness}")
                     # early stop
-                    if best_fitness < 0:
+                    if label == 0:
                         self.logger.info(f"Attack finished - "
                                          f"score {best_fitness}")
                         return

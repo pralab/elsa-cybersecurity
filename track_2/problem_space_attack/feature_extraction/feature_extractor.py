@@ -56,3 +56,4 @@ class FeatureExtractor(BaseFeatureExtractor):
         logging.getLogger("androguard.core.api_specific_resources").setLevel(
             logging.CRITICAL)
         logging.getLogger("androguard.axml").setLevel(logging.CRITICAL)
+        logging.getLogger("androguard.apk").setLevel(logging.CRITICAL)

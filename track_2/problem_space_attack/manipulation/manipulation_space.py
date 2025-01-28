@@ -62,9 +62,8 @@ class ManipulationSpace(Manipulations):
 
     @staticmethod
     def get_valid_obfuscations(malware_features):
-        return [
-            feat for feat in malware_features
-            if FEATURES[feat.split("::")[0]].obfuscate]
+        return [feat for feat in malware_features
+                if FEATURES[feat.split("::")[0]].obfuscate]
 
     @staticmethod
     def get_valid_injections(feature_list):
@@ -80,6 +79,12 @@ class ManipulationSpace(Manipulations):
 
     def get_all_manipulations(self):
         return Manipulations(self.inject, self.obfuscate)
+
+    def get_all_injections(self):
+        return Manipulations(self.inject, [])
+
+    def get_all_obfuscations(self):
+        return Manipulations([], self.obfuscate)
 
     def get_vector_from_manipulations(self, manipulations):
         inject_idx = [i for i, _ in enumerate(manipulations.inject)]

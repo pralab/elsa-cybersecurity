@@ -3,7 +3,7 @@ from deap import base, creator, tools
 import logging
 from secml.parallel import parfor2
 import numpy as np
-from .manipulation import Manipulator, ManipulationSpace
+from .manipulation import Manipulator, ManipulationSpace, Manipulations
 from .feature_extraction import FeatureExtractor
 import os
 import tempfile
@@ -301,8 +301,12 @@ class ProblemSpaceAttack:
         self.logger.debug(f"Building manipulation space")
         manipulation_space = ManipulationSpace(self._candidate_features,
                                                malware_features)
-        error_free_manipulations = manipulator.get_error_free_manipulations(
-            manipulation_space.get_all_manipulations(), self._n_jobs)
+        error_free_injections = manipulator.get_error_free_manipulations(
+            manipulation_space.get_all_injections(), self._n_jobs)
+        error_free_obfuscations = manipulator.get_error_free_manipulations(
+            manipulation_space.get_all_obfuscations(), self._n_jobs)
+        error_free_manipulations = Manipulations(
+            error_free_injections.inject, error_free_obfuscations.obfuscate)
         manipulation_space.set_error_free_manipulations(
             error_free_manipulations)
         return manipulation_space

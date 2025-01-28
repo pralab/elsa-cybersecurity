@@ -1,6 +1,4 @@
 from problem_space_attack import ProblemSpaceAttack
-from models.base import BaseModel
-from models.utils import *
 import os
 import logging
 from apk_downloader import APKDownloader
@@ -19,45 +17,18 @@ def _download_apks(androzoo_api_key, ds_file, out_dir, n_jobs=1):
     downloader.download_apks(apks_sha256, n_jobs=n_jobs)
 
 
-def evaluate(classifier, download_apks=False, androzoo_api_key=None, n_jobs=1):
-    """Evaluate the given classifier with the problem-space attack, after
-    downloading the required APK files from AndroZoo if needed.
+def evaluate(classifier, config):
+    ts_fp_check_dir = config.TS_FP_CHECK_DIR
+    ts_adv_dir = config.TS_ADV_DIR
+    manipulated_apks_dir = config.MANIPULATED_APKS_DIR
 
-    Parameters
-    ----------
-    classifier : BaseModel
-        The classifier to evaluate. Must extend the `BaseModel` interface,
-        by implementing the `classify` method.
-    download_apks : bool
-        If True, the APKs required for the evaluation will be automatically
-        downloaded. In this case, the AndroZoo API key must be passed.
-    androzoo_api_key : str
-        The personal AndroZoo API key.
-    n_jobs : int
-        The number of concurrent threads/processes that will be used during the
-        APKs download (in this case it will be clipped to 20) and the attack.
-        Note that during the attack a higher number of concurrent processes
-        means higher memory consumption, which might cause failures.
-
-    Returns
-    -------
-    dict
-        A dictionary automatically filled with the evaluation results,
-        that can be saved in JSON format to be uploaded.
-    """
-    base_path = os.path.join(os.path.dirname(__file__))
-    ts_fp_check_dir = os.path.join(base_path, "../data/test_set_fp_check")
-    ts_adv_dir = os.path.join(base_path, "../data/test_set_adv")
-    manipulated_apks_dir = os.path.join(base_path, "../data/manipulated_apks")
-
-    if download_apks:
-        ts_fp_check_ds = os.path.join(
-            base_path, "../data/test_set_fp_check.zip")
+    if config.DOWNLOAD_APKS:
+        ts_fp_check_ds = config.TS_FP_CHECK
         _download_apks(
-            androzoo_api_key, ts_fp_check_ds, ts_fp_check_dir, n_jobs)
-        ts_adv_ds = os.path.join(base_path, "../data/test_set_adv.zip")
+            config.AZOO_API_KEY, ts_fp_check_ds, ts_fp_check_dir, config.N_JOBS)
+        ts_adv_ds = config.TS_ADV
         _download_apks(
-            androzoo_api_key, ts_adv_ds, ts_adv_dir, n_jobs)
+            config.AZOO_API_KEY, ts_adv_ds, ts_adv_dir, config.N_JOBS)
 
     results = []
 
@@ -85,7 +56,8 @@ def evaluate(classifier, download_apks=False, androzoo_api_key=None, n_jobs=1):
                                 logging_level=logging.INFO)
 
     adv_results = attack.run(ts_adv, ts_fp_check, n_iterations=5,
-                             n_features=100, n_jobs=n_jobs, n_candidates=20)
+                             n_features=100, n_jobs=config.N_JOBS,
+                             n_candidates=20)
 
     results.append({sha256: [int(adv_result[0]), float(adv_result[1])]
                     for sha256, adv_result in zip(

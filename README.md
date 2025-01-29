@@ -41,7 +41,7 @@ In this setting, we will collect the performance evaluation of the given AI-base
 
 ### Track 2: Adversarial Robustness to Problem-space Attacks
 1. The submitted models must accept APK files as input and provide the classification scores of the positive class and the predicted class labels as output. 
-2. The submitted models must have a False Positive Rate equal to or lower than 1% on the provided validation set composed of benign samples only. 
+2. The submitted models must have a False Positive Rate equal to or lower than 1% on the provided validation set composed of benign samples only.
 
 ### Track 3: Temporal Robustness to Data Drift
 1. The submitted models must accept APK files as input and provide the classification scores of the positive class and the predicted class labels as output.

@@ -1,4 +1,4 @@
-from feature_space_attack import FeatureSpaceAttack
+from .feature_space_attack import FeatureSpaceAttack
 from models.utils import *
 import logging
 

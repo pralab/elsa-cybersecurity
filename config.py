@@ -21,7 +21,7 @@ N_JOBS = 1
 
 """If True, the APKs required for Track 2 evaluation will be automatically
 downloaded. In this case, the AndroZoo API key must be passed."""
-DOWNLOAD_ADV_APKS = False
+DOWNLOAD_APKS = False
 
 
 AZOO_API_KEY = ""  # The personal AndroZoo API key.

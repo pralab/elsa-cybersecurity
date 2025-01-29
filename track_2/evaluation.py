@@ -1,7 +1,7 @@
-from problem_space_attack import ProblemSpaceAttack
+from .problem_space_attack import ProblemSpaceAttack
+from .apk_downloader import APKDownloader
 import os
 import logging
-from apk_downloader import APKDownloader
 import pandas as pd
 from zipfile import ZipFile, ZIP_DEFLATED
 

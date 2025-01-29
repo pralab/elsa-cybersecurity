@@ -104,6 +104,8 @@ pip install -r track_2/attack_requirements.txt
 pip install -r track_2/problem_space_attack/manipulation/Obfuscapk/src/requirements.txt
 ```
 
+- Read and edit (if needed) the [configuration file](https://github.com/pralab/elsa-cybersecurity/blob/main/config.py).
+
 - Run the `main.py` script passing the path of the Python module loading your detector, the number of the evaluation tracks for which to produce the results and the name of your approach:
 ```bash
 python main.py --clf_loader_path <your_loader_path.py> --track <track number> --method_name <your method name>

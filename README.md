@@ -150,13 +150,16 @@ If you use Docker:
 ```bash
 docker build -t android android-detectors
 docker run -itd --name android android
-docker exec -it android pip install -r /track1/attack_requirements.txt
-docker exec -it android pip install -r /track2/attack_requirements.txt
+docker cp . android:/
+docker exec -it android pip install -r /track_1/attack_requirements.txt
+docker exec -it android pip install -r /track_2/attack_requirements.txt
 docker exec -it android pip install -r /track_2/problem_space_attack/manipulation/Obfuscapk/src/requirements.txt
-docker exec -it android python main.py --clf_loader_path android-detectors/src/loaders/drebin_loader.py --track 1 --method_name drebin
-docker exec -it android python main.py --clf_loader_path android-detectors/src/loaders/drebin_loader.py --track 2 --method_name drebin
-docker exec -it android python main.py --clf_loader_path android-detectors/src/loaders/drebin_loader.py --track 3 --method_name drebin
-docker cp android:/submissions/* submissions/
+docker exec -it android python /main.py --clf_loader_path /android-detectors/src/loaders/drebin_loader.py --track 1 --method_name drebin
+docker cp android:/submissions/submission_drebin_track_1.json submissions/
+docker exec -it android python /main.py --clf_loader_path /android-detectors/src/loaders/drebin_loader.py --track 2 --method_name drebin
+docker cp android:/submissions/submission_drebin_track_2.json submissions/
+docker exec -it android python /main.py --clf_loader_path /android-detectors/src/loaders/drebin_loader.py --track 3 --method_name drebin
+docker cp android:/submissions/submission_drebin_track_3.json submissions/
 docker stop android
 ```
 

@@ -154,9 +154,8 @@ docker exec -it android pip install -r /track1/attack_requirements.txt
 docker exec -it android pip install -r /track2/attack_requirements.txt
 docker exec -it android pip install -r /track_2/problem_space_attack/manipulation/Obfuscapk/src/requirements.txt
 docker exec -it android python main.py --clf_loader_path android-detectors/src/loaders/drebin_loader.py --track 1 --method_name drebin
-python main.py --clf_loader_path android-detectors/src/loaders/drebin_loader.py --track 1 --method_name drebin
-python main.py --clf_loader_path android-detectors/src/loaders/drebin_loader.py --track 2 --method_name drebin
-python main.py --clf_loader_path android-detectors/src/loaders/drebin_loader.py --track 3 --method_name drebin
+docker exec -it android python main.py --clf_loader_path android-detectors/src/loaders/drebin_loader.py --track 2 --method_name drebin
+docker exec -it android python main.py --clf_loader_path android-detectors/src/loaders/drebin_loader.py --track 3 --method_name drebin
 docker cp android:/submissions/* submissions/
 docker stop android
 ```

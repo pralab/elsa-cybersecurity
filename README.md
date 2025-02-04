@@ -19,7 +19,7 @@ We propose a threefold benchmark to provide tools for comparing AI-based Android
 In this scenario, we aim to measure how much the models' predictions change against increasing amounts of adversarial manipulations, assuming the attacker knows the features used and the model itself and has unrestricted access to it. A feature-space evasion attack will be performed on test applications, perturbing the feature vector with constraints to ensure that applying these manipulations to an APK preserves its malicious functionalities. The applied perturbation is bounded based on the number of modified features.
 
 ### Track 2: Adversarial Robustness to Problem-space Attacks
-The problem-space attack scenario consists of manipulating the APK files directly rather than only simulating the effect of the attack at the feature level. In this case, we assume the attacker does not know the target model and its features. An input-space evasion attack will be performed on the test applications, applying functionality-preserving manipulation to the APKs. The applied manipulations are bounded based on the size of the injected data.
+The problem-space attack scenario consists of manipulating the APK files directly rather than only simulating the effect of the attack at the feature level. In this case, we assume the attacker does not know the target model and its features. An input-space evasion attack will be performed on the test applications, applying functionality-preserving manipulation to the APKs. The applied perturbation is bounded based on the number of modified features.
 
 ### Track 3: Temporal Robustness to Data Drift
 In this setting, we will collect the performance evaluation of the given AI-based detectors with respect to (future) data collected over time, updating the test applications with new samples in each evaluation round.
@@ -33,18 +33,22 @@ In this setting, we will collect the performance evaluation of the given AI-base
 4. Participants must train their models only on the provided training dataset. 
 5. The submitted model must be evaluated only with the provided code.
 6. Everything must be fully reproducible. The participants must provide all the required code to train and deploy their models, including pre-trained models and the feature extraction process (except for Track 1, where the features will be provided to the participants) and, if necessary, the pre-set random seeds to guarantee more accurate reproducibility. All submitted models and results are subject to re-evaluations. All the provided material will be kept private until the end of the competition and made public after the winners are announced.
+7. You can participate independently in each of the three evaluation tracks. Participation in all three tracks is not mandatory.
 
 ### Track 1: Adversarial Robustness to Feature-space Attacks
 1. The submitted models must only rely on the provided feature set or a custom subset thereof (in this case, the user must specify the selected features). 
 2. The submitted models must accept feature vectors as input and provide the classification score of the positive class and the predicted class labels as output. 
 3. The submitted models must have a False Positive Rate equal to or lower than 1% on the provided validation set composed of benign samples only.
+4. The winner will be the one with the highest Detection Rate when 100 features are manipulated. If multiple participants report the same score, the other metrics will be considered in this order to determine the winner: Detection Rate when 50 features are manipulated, Detection Rate when 25 features are manipulated, Detection Rate in the absence of manipulation, False Positive Rate.
 
 ### Track 2: Adversarial Robustness to Problem-space Attacks
 1. The submitted models must accept APK files as input and provide the classification scores of the positive class and the predicted class labels as output. 
 2. The submitted models must have a False Positive Rate equal to or lower than 1% on the provided validation set composed of benign samples only.
+3. The winner will be the one with the highest Detection Rate when 100 features are manipulated. If multiple participants report the same score, the other metrics will be considered in this order to determine the winner: Detection Rate in the absence of manipulation, False Positive Rate.
 
 ### Track 3: Temporal Robustness to Data Drift
 1. The submitted models must accept APK files as input and provide the classification scores of the positive class and the predicted class labels as output.
+2. The winner will be the one with the highest Area Under Time. If multiple participants report the same score, they will be considered joint winners.
 
 ## Datasets
 
@@ -163,6 +167,12 @@ docker cp android:/submissions/submission_drebin_track_3.json submissions/
 docker stop android
 ```
 
+## Evaluation Metrics
+- Detection Rate (a.k.a. True Positive Rate, Track 1 and 2): this metric is computed as the percentage of correctly detected malware and will be used for Track 1 and 2 on a test set containing only malware samples.
+- False Positive Rate (Track 1 and 2): this metric is computed as the percentage of legitimate samples wrongly detected as malware and will be used for Track 1 and 2 on a test set containing only legitimate samples.
+- F1 Score (Track 3): this metric is computed as the harmonic mean of Precision and Recall, and it is particularly suited for evaluating the binary classification performance on unbalanced datasets in a single metric.
+- Area Under Time - AUT (Track 3): this metric was introduced in [4] to evaluate the performance of malware detectors over time. It is based on the trapezoidal rule as the AUC-based metrics. Its value is enclosed in the [0, 1] interval, where an ideal detector with robustness to temporal performance decay has AUT = 1. We compute the metric under point estimates of the F1 Score along the time period of the test samples.
+
 ## References
 
 [1] Allix, K., Bissyandé, T.F., Klein, J., & Traon, Y.L. (2016). AndroZoo: Collecting Millions of Android Apps for the Research Community. 2016 IEEE/ACM 13th Working Conference on Mining Software Repositories (MSR), 468-471.
@@ -170,3 +180,5 @@ docker stop android
 [2] https://www.virustotal.com
 
 [3] Arp, D., Spreitzenbarth, M., Hubner, M., Gascon, H., & Rieck, K. (2014). DREBIN: Effective and Explainable Detection of Android Malware in Your Pocket. Network and Distributed System Security Symposium.
+
+[4] Pendlebury, F., Pierazzi, F., Jordaney, R., Kinder, J., & Cavallaro, L. (2018). TESSERACT: Eliminating Experimental Bias in Malware Classification across Space and Time. USENIX Security Symposium.

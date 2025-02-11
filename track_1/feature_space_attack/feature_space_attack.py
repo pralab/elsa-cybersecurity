@@ -129,7 +129,7 @@ class FeatureSpaceAttack:
 
         # Evaluate the entire population
         for ind in pop:
-            ind.fitness.values = (self.fitness(x_orig, ind),)
+            ind.label, ind.fitness.values = self.fitness(x_orig, ind)
 
         # CXPB is the probability with which two individuals are crossed
         # MUTPB is the probability for mutating an individual
@@ -166,7 +166,7 @@ class FeatureSpaceAttack:
             # Evaluate the individuals with an invalid fitness
             invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
             for ind in invalid_ind:
-                ind.fitness.values = (self.fitness(x_orig, ind),)
+                ind.label, ind.fitness.values = self.fitness(x_orig, ind)
             pop.extend(invalid_ind)
 
             fits = np.array([ind.fitness.values[0] for ind in pop])
@@ -180,10 +180,11 @@ class FeatureSpaceAttack:
             if g == 0 or (len(last_n_best_fits) > 1 and
                           best_fitness != last_n_best_fits[-2]):
                 target_adv = self._apply_manipulations(x_orig, pop[best_idx])
+                label = pop[best_idx].label
                 self.logger.debug(
                     f"Generation {g + 1} - score {best_fitness}")
                 # early stop
-                if best_fitness < 0:
+                if label == 0:
                     return target_adv + unused_features
             g += 1
 
@@ -240,7 +241,7 @@ class FeatureSpaceAttack:
 
         creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
         creator.create("Individual", np.ndarray,
-                       fitness=creator.FitnessMin)
+                       fitness=creator.FitnessMin, label=int)
 
         toolbox = base.Toolbox()
         # Register the function to initialize individuals and population
@@ -316,7 +317,8 @@ class FeatureSpaceAttack:
             The fitness
         """
         x_adv = self._apply_manipulations(x_orig, delta)
-        return self.clf.predict([x_adv])[1].item()
+        labels, scores = self.clf.predict([x_adv])
+        return labels.item(), (scores.item(),)
 
     def _apply_manipulations(self, x_orig, delta):
         """

@@ -36,7 +36,7 @@ def evaluate(classifier, config):
         y_pred, scores = classifier.classify(ts_round_i)
         results.append({
             sha256: [int(y), float(s)] for sha256, y, s in zip(
-                load_sha256_list(config.FEATURES_TS_ROUND.format(i)),
+                [os.path.basename(apk).split(".")[0] for apk in ts_round_i],
                 y_pred, scores)})
 
     return results

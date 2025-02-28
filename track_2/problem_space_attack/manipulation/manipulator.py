@@ -12,6 +12,9 @@ from .manipulation_space import Manipulations
 # For the plugin system log only the error messages and ignore the log level
 # set by the user.
 logging.getLogger("yapsy").level = logging.ERROR
+logging.getLogger("obfuscapk.tool.Apktool").setLevel(logging.CRITICAL)
+logging.getLogger("obfuscapk.obfuscation").setLevel(logging.CRITICAL)
+
 
 path = os.path.join(os.path.dirname(__file__), "lib")
 os.environ["APKTOOL_PATH"] = os.path.join(path, "apktool")

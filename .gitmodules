@@ -1,6 +1,7 @@
 [submodule "android-detectors"]
 	path = android-detectors
 	url = https://github.com/pralab/android-detectors
+	branch = elsa-competition
 	update = merge
 [submodule "track_2/problem_space_attack/manipulation/Obfuscapk"]
 	path = track_2/problem_space_attack/manipulation/Obfuscapk

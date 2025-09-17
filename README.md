@@ -93,11 +93,11 @@ The pre-computed features can be downloaded [here](https://benchmarks.elsa-ai.eu
 
 ## Model implementation instructions
 Please, follow these instructions when implementing your detector:
-- The model class must necessarily implement the interface defined in the [BaseModel](https://github.com/pralab/android-detectors/blob/main/src/models/base/base_model.py) class. We suggest to extend this class.
+- The model class must necessarily implement the interface defined in the [BaseModel](https://github.com/pralab/android-detectors/blob/elsa-competition/src/models/base/base_model.py) class. We suggest to extend this class.
 - Provide a Python module containing a `load()` method that returns an instance of your trained classifier.
 - To ensure reproducibility and allow validating the results, make sure to set all random seeds, add all the requirements, and if necessary a Dockerfile from where to run the evaluation scripts.
 
-In [this repository](https://github.com/pralab/android-detectors) you can find already implemented models which serve as baselines for the benchmarks hosted in the Cybersecurity Use Case.
+In [this repository](https://github.com/pralab/android-detectors/tree/elsa-competition) you can find already implemented models which serve as baselines for the benchmarks hosted in the Cybersecurity Use Case.
 
 ## Evaluation Instructions
 
